@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.UserDao">
+
+   <select id="login" resultType="UserInfo" parameterType="UserInfo">
+      <!-- configuration에서 alias로설정된 Board -->
+      SELECT * FROM UserInfo WHERE userid=#{userid} AND password=#{password}
+   </select>
+   
+   <select id="searchByName" parameterType="String" resultType="UserInfo">
+   	  select * from UserInfo where name like '%'||#{name}||'%'	
+   </select>
+   
+    <select id="searchById" parameterType="string" resultType="UserInfo">
+      select * from UserInfo
+      where userid = #{userid}
+    </select>
+    
+   <insert id="addUserInfo" parameterType="UserInfo">
+      insert into userinfo(userid, password, name, email) 
+      values (#{userid}, #{password}, #{name}, #{email})
+   </insert>	
+</mapper>
+
+
+
+
+
+
+
+
+
+
